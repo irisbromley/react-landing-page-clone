@@ -90,16 +90,45 @@ const card = css`
   flex-direction: column;
   align-items: center;
 
+  :nth-child(even) {
+    top: 96px;
+    left: -55px;
+  }
+`;
+
+const cardText = css`
+  text-align: left;
+
   h3 {
     font-family: 'Playfair Display', serif;
     font-size: 26px;
     font-weight: 400;
   }
+  a {
+    text-decoration: none;
+    color: #4284f3;
+    size: 14px;
+    font-weight: 700;
+    font-family: 'Open Sans';
+  }
 `;
 
-const firstImg = css`
+const cardIcon = css`
   width: 88px;
   margin: 0 104px 20px;
+  opacity: 0.75;
+`;
+const screenshot = css`
+  position: relative;
+  height: 280px;
+
+  img {
+    position: absolute;
+
+    width: 424px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 10%);
+  }
 `;
 
 const wrapper = css`
@@ -107,6 +136,10 @@ const wrapper = css`
   margin: auto;
   width: 1200px;
   justify-content: center;
+`;
+
+const arrowWrapper = css`
+  width: 12px;
 `;
 
 function App() {
@@ -171,68 +204,104 @@ function App() {
             <div css={gridContainer}>
               <div css={card}>
                 <img
-                  css={firstImg}
+                  css={cardIcon}
                   src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-jql-search-extensions-for-jira.svg"
                   alt="JQL Search Extensions for Jira"
                 />
-                <div css={css({ position: 'relative', height: '280px' })}>
+                <div css={screenshot}>
                   <img
-                    css={css({
-                      position: 'absolute',
-                      left: '-280px',
-                      width: '424px',
-                    })}
+                    style={{ left: '-280px' }}
                     src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-jql-search-extensions-for-jira.jpg"
                     alt="Interface of JQL Search Extensions for Jira."
                   />
                 </div>
-                <h3>JQL Search Extensions for Jira</h3>
-                <p>
-                  Find all your issues with over 50 JQL search extensions.
-                  Search Jira comments, subtasks, attachments, versions and
-                  links.
-                </p>
-                <a href="/#">Learn More</a>
+                <div css={cardText}>
+                  <h3>JQL Search Extensions for Jira</h3>
+                  <p>
+                    Find all your issues with over 50 JQL search extensions.
+                    Search Jira comments, subtasks, attachments, versions and
+                    links.
+                  </p>
+                  <a href="/#">Learn More</a>
+                </div>
               </div>
               <div css={card}>
                 <img
-                  // css={secondImg}
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-jql-search-extensions-for-jira.svg"
-                  alt="JQL Search Extensions for Jira"
+                  css={cardIcon}
+                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-okr-for-jira.svg"
+                  alt="OKR for Jira"
                 />
-                <img
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-jql-search-extensions-for-jira.jpg"
-                  alt="Interface of JQL Search Extensions for Jira."
-                />
+                <div css={screenshot}>
+                  <img
+                    style={{ left: '-145px' }}
+                    src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-okr-for-jira.jpg"
+                    alt="Interface of OKR for Jira."
+                  />
+                </div>
+                <div css={cardText}>
+                  <h3>OKR for Jira</h3>
+                  <p>
+                    Easily organize and prioritize objectives at every level and
+                    give you and your teams the visibility they need to keep
+                    track of key results.
+                  </p>
+                  <a href="/#">Learn More</a>
+                </div>
               </div>
               <div css={card}>
                 <img
-                  // css={secondImg}
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-jql-search-extensions-for-jira.svg"
-                  alt="JQL Search Extensions for Jira"
+                  css={cardIcon}
+                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-panaroma-for-jira.svg"
+                  alt="Panorama for Jira"
                 />
-                <img
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-jql-search-extensions-for-jira.jpg"
-                  alt="Interface of JQL Search Extensions for Jira."
-                />
+                <div css={screenshot}>
+                  <img
+                    style={{ left: '-280px' }}
+                    src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-panorama-for-jira.jpg"
+                    alt="Interface of Panorama for Jira."
+                  />
+                </div>
+                <div css={cardText}>
+                  <h3>Panorama for Jira</h3>
+                  <p>
+                    Get a big-picture view of your projects and epics. Easily
+                    create multilevel, structured hierarchies to manage projects
+                    and track progress across teams.
+                  </p>
+
+                  <div css={arrowWrapper}>
+                    <a href="/#">Learn More</a>
+                  </div>
+                </div>
               </div>
 
               <div css={card}>
                 <img
-                  // css={thirdImg}
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-jql-search-extensions-for-jira.svg"
-                  alt="JQL Search Extensions for Jira"
+                  css={cardIcon}
+                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/logo-okr-for-jira.svg"
+                  alt="Goals for Jira"
                 />
-                <img
-                  src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-jql-search-extensions-for-jira.jpg"
-                  alt="Interface of JQL Search Extensions for Jira."
-                />
+                <div css={screenshot}>
+                  <img
+                    style={{ left: '-145px' }}
+                    src="https://digitaltoucan.com/wp-content/uploads/2021/02/screenshot-goals-for-jira.jpg"
+                    alt="Interface of Goals for Jira."
+                  />
+                </div>
+                <div css={cardText}>
+                  <h3>Goals for Jira</h3>
+                  <p>
+                    Keep your teams focused on success. Easily create powerful
+                    dashboards to track progress on your project and sprint
+                    goals in Jira.
+                  </p>
+                  <a href="/#">Learn More </a>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </main>
-      Content in any sections
       <footer>footer with subfooter</footer>
     </>
   );
