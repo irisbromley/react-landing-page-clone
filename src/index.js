@@ -14,6 +14,10 @@ root.render(
           font-family: 'Open Sans', sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+          background-image: url(./bg-home.svg);
+          background-repeat: no-repeat;
+          background-position-x: center;
+          background-size: 1385px;
         }
         *,
         ::after,

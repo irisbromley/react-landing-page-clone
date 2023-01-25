@@ -1,19 +1,38 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
 
-const headerStyles = css`
-  /* position: fixed; */
+const container = css`
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
-  /* margin: 10px 170px 0 170px; */
-  /* max-width: 1200px; */
-  background-color: #ffffff;
-  color: #1a1a1a;
-  width: 100%;
+`;
 
-  img {
-    height: 45px;
+const fixedHeader = (isTop) => css`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  top: 0;
+  background-color: #fff;
+  transition: background-color 0.6s;
+  z-index: 100;
+  ${isTop ? `background: #fff0;` : `background: #ffffffb3;`}
+  ${!isTop && 'box-shadow: 0 8px 24px rgb(0 0 0 / 10%)'};
+`;
+const headerStyles = (isTop) => css`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1200px;
+  display: flex;
+  padding-top: 10px;
+  align-items: center;
+
+  > * {
+    flex: 1;
+  }
+  a {
+    ${isTop ? `color: #ffffff99;` : `color: #333;`}
   }
 `;
 
@@ -25,7 +44,6 @@ const navLinkStyles = css`
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    color: #ffffff99;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
     padding-right: 20px;
@@ -43,22 +61,20 @@ const buttonStyles = css`
   font-size: 14px;
   border: none;
   padding: 6px 12px;
+  transition: transform 0.3s;
 
   :hover {
     cursor: pointer;
+    transform: scale(1.1);
   }
 `;
 const heroStyles = css`
-  height: 130vh;
-  margin-top: -120px;
-  background-image: url(./bg-home.svg);
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 90vh;
   color: #fff;
 
   h1 {
     font-family: 'Playfair Display', serif;
-    padding-top: 160px;
+    padding-top: 100px;
     font-size: 3.5em;
     text-align: center;
     margin-bottom: 20px;
@@ -72,7 +88,7 @@ const heroStyles = css`
 const helpYourTeam = css`
   text-align: center;
   margin: auto;
-  padding: 80px 160px;
+  padding: 0px 160px 100px;
 `;
 
 const gridContainer = css`
@@ -92,7 +108,10 @@ const card = css`
 
   :nth-child(even) {
     top: 96px;
-    left: -55px;
+    left: 8px;
+  }
+  :nth-child(odd) {
+    left: 60px;
   }
 `;
 
@@ -124,54 +143,94 @@ const screenshot = css`
 
   img {
     position: absolute;
-
     width: 424px;
     border-radius: 6px;
     box-shadow: 3px 3px 15px rgb(0 0 0 / 10%);
   }
 `;
 
-const wrapper = css`
+const testimonials = css`
+  background-color: #f5a623;
   display: flex;
-  margin: auto;
-  width: 1200px;
-  justify-content: center;
+  margin-top: 200px;
+  position: relative;
 `;
 
-const arrowWrapper = css`
-  width: 12px;
+const testImg = css`
+  position: absolute;
+  bottom: -43px;
+  width: 250px;
+  height: 250px;
+  background-image: url(https://digitaltoucan.com/wp-content/themes/digital-toucan/images/graphic-section-testimonials.svg);
+  background-size: 200% 100%;
+`;
+
+const cite = css``;
+
+const birdImg = css`
+  background-image: url(https://digitaltoucan.com/wp-content/themes/digital-toucan/images/graphic-heading-style-1.svg);
+  width: 200px;
+  height: 158px;
+  background-repeat: no-repeat;
+`;
+
+const footerStyles = css`
+  background-color: #e4e4e4;
+  padding: 30px 0;
+`;
+
+const socialMedia = css`
+  img {
+    width: 40px;
+  }
 `;
 
 function App() {
+  const [scrollTop, setScrollTop] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollTop(window.scrollY);
+    window.removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
       <header>
-        <section css={headerStyles}>
-          <nav>
-            <ul css={navLinkStyles}>
-              <li>
-                <a href="/#">Jira Apps</a>
-              </li>
-              <li>
-                <a href="/#">About Us</a>
-              </li>
-              <li>
-                <a href="/#">Resources</a>
-              </li>
-              <li>
-                <a href="/#">Support</a>
-              </li>
-            </ul>
-          </nav>
-          <div>
-            <a href="/#">
-              <img
-                src="https://digitaltoucan.com/wp-content/uploads/2022/06/logo-digital-toucan-v2.svg"
-                alt="Logo digital Toucan"
-              />
-            </a>
+        <section>
+          <div css={fixedHeader(scrollTop === 0)}>
+            <div css={headerStyles(scrollTop === 0)}>
+              <nav>
+                <ul css={navLinkStyles}>
+                  <li>
+                    <a href="/#">Jira Apps</a>
+                  </li>
+                  <li>
+                    <a href="/#">About Us</a>
+                  </li>
+                  <li>
+                    <a href="/#">Resources</a>
+                  </li>
+                  <li>
+                    <a href="/#">Support</a>
+                  </li>
+                </ul>
+              </nav>
+
+              <div css={{ display: 'flex', justifyContent: 'center' }}>
+                <a href="/#">
+                  <img
+                    width={45}
+                    src="https://digitaltoucan.com/wp-content/uploads/2022/06/logo-digital-toucan-v2.svg"
+                    alt="Logo digital Toucan"
+                  />
+                </a>
+              </div>
+              <div css={{ display: 'flex', justifyContent: 'end' }}>
+                <button css={buttonStyles}>Contact Us</button>
+              </div>
+            </div>
           </div>
-          <button css={buttonStyles}>Contact Us</button>
         </section>
       </header>
       <main>
@@ -186,7 +245,7 @@ function App() {
           </p>
         </div>
         <section>
-          <div css={wrapper}>
+          <div css={container}>
             <div css={helpYourTeam}>
               <h2>
                 Help your teams find
@@ -200,7 +259,7 @@ function App() {
               </p>
             </div>
           </div>
-          <div css={wrapper}>
+          <div css={container} style={{ justifyContent: 'center' }}>
             <div css={gridContainer}>
               <div css={card}>
                 <img
@@ -268,10 +327,7 @@ function App() {
                     create multilevel, structured hierarchies to manage projects
                     and track progress across teams.
                   </p>
-
-                  <div css={arrowWrapper}>
-                    <a href="/#">Learn More</a>
-                  </div>
+                  <a href="/#">Learn More</a>
                 </div>
               </div>
 
@@ -301,8 +357,91 @@ function App() {
             </div>
           </div>
         </section>
+        <section css={testimonials}>
+          <div css={container}>
+            <div style={{ flex: '1', padding: '28px 112px 0' }}>
+              <h2> Users love our Jira apps.</h2>
+              <div css={testImg}></div>
+            </div>
+            <div style={{ flex: '1', padding: '120px 70px' }}>
+              <p>
+                "I love this plugin! I have recommended it to some of my clients
+                and I have it in my own instance. It is great for getting a big
+                picture of a lot of issues in a hierarchical view and the
+                ability to do a "group by" on various fields on the structure
+                gives really quick visual views of project status that are very
+                helpful. Support is awesome as well. Would definitely
+                recommend!"
+              </p>
+              <p css={cite}>--Nancy Bennett--</p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div css={container}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                flex: 1,
+                padding: '5px',
+              }}
+            >
+              <div css={birdImg}></div>
+              <h2
+                style={{ maxWidth: '500px', textAlign: 'center', marginTop: 0 }}
+              >
+                Want to get in touch? <br /> Let's talk!
+              </h2>
+              <button css={buttonStyles}>Contact Us</button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer>footer with subfooter</footer>
+      <footer css={footerStyles}>
+        <div css={container}>
+          <div>
+            <img
+              src="https://digitaltoucan.com/wp-content/uploads/2022/06/logo-digital-toucan-v2.svg"
+              alt="Logo digital Toucan"
+            />
+            <p>
+              Key members of the Digital Toucan team were part of Atlassian's
+              Jira development arm for over 8 years. We built some of the core
+              features of the product and have developed some of the most
+              successful and popular add-ons on the Atlassian Marketplace.
+            </p>
+            <div>
+              <ul className={socialMedia}>
+                <li>
+                  <a href="/#" alt="LinkedIn Logo">
+                    {' '}
+                  </a>
+                </li>
+                <li>
+                  <a href="/#" alt="Email Logo">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
