@@ -88,7 +88,7 @@ const heroStyles = css`
 const helpYourTeam = css`
   text-align: center;
   margin: auto;
-  padding: 0px 160px 100px;
+  padding: 300px 160px 100px;
 `;
 
 const gridContainer = css`
@@ -361,7 +361,7 @@ function App() {
           <div css={container}>
             <div style={{ flex: '1', padding: '28px 112px 0' }}>
               <h2> Users love our Jira apps.</h2>
-              <div css={testImg}></div>
+              <div css={testImg} />
             </div>
             <div style={{ flex: '1', padding: '120px 70px' }}>
               <p>
@@ -385,10 +385,10 @@ function App() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 flex: 1,
-                padding: '5px',
+                padding: '50px',
               }}
             >
-              <div css={birdImg}></div>
+              <div css={birdImg} />
               <h2
                 style={{ maxWidth: '500px', textAlign: 'center', marginTop: 0 }}
               >
@@ -399,7 +399,7 @@ function App() {
           </div>
         </section>
       </main>
-      <footer css={footerStyles}>
+      {/* <footer css={footerStyles}>
         <div css={container}>
           <div>
             <img
@@ -441,7 +441,7 @@ function App() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
