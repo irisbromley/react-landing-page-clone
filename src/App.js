@@ -174,17 +174,6 @@ const birdImg = css`
   background-repeat: no-repeat;
 `;
 
-const footerStyles = css`
-  background-color: #e4e4e4;
-  padding: 30px 0;
-`;
-
-const socialMedia = css`
-  img {
-    width: 40px;
-  }
-`;
-
 function App() {
   const [scrollTop, setScrollTop] = useState(0);
   useEffect(() => {
