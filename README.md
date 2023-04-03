@@ -1,3 +1,11 @@
+## Landing Page Clone
+
+I chose this website [https://digitaltoucan.com/?ref=landingfolio](https://digitaltoucan.com/?ref=landingfolio) to recreate practicing CSS emotion.
+
+It is deployed here: [https://stellar-paprenjak-b7687f.netlify.app/](https://stellar-paprenjak-b7687f.netlify.app/)
+
+It is not responsive so open on big screen.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
